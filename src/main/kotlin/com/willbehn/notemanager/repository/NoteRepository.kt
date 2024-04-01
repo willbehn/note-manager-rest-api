@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository
 interface NoteRepository: JpaRepository<Note, Long> {
     fun findNoteById(id: Long): Note
 
-    /*@Query( value = "SELECT * FROM notes n WHERE n.title LIKE %:title%")
-    fun queryNoteByTitle(@Param("title") title: String): Note*/
+    @Query( value = "SELECT * FROM notes n WHERE n.title LIKE %:title%", nativeQuery = true)
+    fun queryNotesByTitle(@Param("title") title: String): List<Note>
 
-    /*@Query("SELECT CASE WHEN COUNT(t) > 0 THEN TRUE ELSE FALSE END FROM notes n WHERE n.title = ?1")
-    fun doesTitleExist(title: String): Boolean*/
+    @Query(value = "SELECT CASE WHEN COUNT(n) > 0 THEN TRUE ELSE FALSE END FROM Note n WHERE n.title = ?1")
+    fun doesTitleExist(title: String): Boolean
 
 }
