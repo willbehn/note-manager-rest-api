@@ -17,23 +17,27 @@ class NoteController(private val service: NoteService) {
     fun getAllNotes(): ResponseEntity<List<NoteDto>> = ResponseEntity(service.getAllNotes(), HttpStatus.OK)
 
     @GetMapping("note/{id}")
-    fun getTaskById(@PathVariable id: Long): ResponseEntity<NoteDto> =
+    fun getNoteById(@PathVariable id: Long): ResponseEntity<NoteDto> =
         ResponseEntity(service.getNoteById(id), HttpStatus.OK)
+
+    @GetMapping("note/{title}")
+    fun getNotseByTitle(@PathVariable title: String): ResponseEntity<List<NoteDto>> =
+        ResponseEntity(service.getNotesByTitle(title), HttpStatus.OK)
 
     // POST endepunkt (legge inn stuff)
     @PostMapping("create")
-    fun createTask(
+    fun createNote(
         @Valid @RequestBody createRequest: NoteCreateRequest
     ): ResponseEntity<NoteDto> = ResponseEntity(service.createNote(createRequest), HttpStatus.OK)
 
     @PatchMapping("update/{id}")
-    fun updateTask(
+    fun updateNote(
         @PathVariable id: Long,
         @Valid @RequestBody updateRequest: NoteUpdateRequest
     ): ResponseEntity<NoteDto> = ResponseEntity(service.updateNote(id, updateRequest), HttpStatus.OK)
 
     @DeleteMapping("delete/{id}")
-    fun deleteTask(
+    fun deleteNote(
         @PathVariable id: Long
     ): ResponseEntity<String> = ResponseEntity(service.deleteNote(id), HttpStatus.OK)
 }
