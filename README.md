@@ -1,7 +1,7 @@
 # note-manager-rest-api
 
 ## About: 
-This is a Kotlin based REST api for managing notes. The API is created with the spring boot framework, and is set up with a in-memory H2 database for testing. The api can also be connected to a postgreSQL database
+This is a Kotlin and springboot based REST api for managing notes with basic CRUD functionality, currently work in progress. 
 
 ### API documentation
 
