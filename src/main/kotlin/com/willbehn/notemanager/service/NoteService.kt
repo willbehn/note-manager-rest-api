@@ -44,7 +44,7 @@ class NoteService(private val repository: NoteRepository) {
     }
 
 
-    fun getNoteByTitle(title: String): List<NoteDto> {
+    fun getNotesByTitle(title: String): List<NoteDto> {
         //Trenger en exception her for at tittel ikke finnes
 
         return repository.queryNotesByTitle(title).stream().map(this::convertEntityToDto).collect((Collectors.toList()))
